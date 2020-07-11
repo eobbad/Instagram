@@ -6,6 +6,10 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.security.Key;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -14,6 +18,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_KEY = "createdAt";
+    public static int Likes = 0;
 
 
 
@@ -39,5 +44,20 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user){
         put(KEY_USER, user);
+    }
+
+    public int getLikes(){
+        return Likes;
+    }
+
+    public void addLike(){
+        Likes++;
+    }
+
+    public String getCreatedTime() {
+        Date date = getCreatedAt();
+        DateFormat df = new SimpleDateFormat("MMM d", Locale.getDefault());
+        DateFormat df2 = new SimpleDateFormat("hh:mm aaa", Locale.getDefault());
+        return df.format(date) + " at " + df2.format(date);
     }
 }
