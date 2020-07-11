@@ -1,7 +1,7 @@
 package com.example.instagram;
 
-import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements com.example.instagram.ViewHolder {
 
 
         private TextView tvUsername;
@@ -62,6 +64,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
 
         public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
@@ -78,17 +81,25 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     if (userLiked) {
 
                     } else {
-                        addLike(posts.get(pos));
+                        posts.get(pos).addLike();
+                        userLiked = true;
                     }
                 }
             });
 
+
         }
 
-        private void addLike(Post post) {
 
-            post.addLike();
 
+
+        public void addAll(List<Post> list) {
+            posts.addAll(list);
+            notifyDataSetChanged();
+        }
+        public void clear() {
+            posts.clear();
+            notifyDataSetChanged();
         }
 
 
@@ -104,6 +115,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
             }
 
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            
         }
     }
 }

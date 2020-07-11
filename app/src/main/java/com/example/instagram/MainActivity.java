@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,6 +37,10 @@ import java.io.File;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private SwipeRefreshLayout swipeContainer;
+
 
     public static final String TAG = "MainActivity";
 
@@ -81,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
+
+
 
     private void goLoginActivity() {
 

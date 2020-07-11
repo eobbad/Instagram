@@ -5,6 +5,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.parceler.Parcel;
+
 import java.security.Key;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
