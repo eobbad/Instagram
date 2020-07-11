@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
+                Fragment fragment = new PostsFragment();
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         fragment = new PostsFragment() ;
@@ -62,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
                         break;
+                    case R.id.action_logOut:
+                        ParseUser.logOut();
+                        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                        goLoginActivity();
+                        break;
                     case R.id.action_profile:
+                        fragment = new ProfileFragment();
+                        break;
                     default:
                         fragment = new ProfileFragment();
                         break;
@@ -75,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
+    private void goLoginActivity() {
+
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
+
+    }
 
 
 }
