@@ -51,7 +51,7 @@ public class PostsFragment extends Fragment {
         // Lookup the swipe container view
         swipeContainer = view.findViewById(R.id.swipeContainer);
         return view;
-        }
+    }
 
 
 
